@@ -12,13 +12,13 @@ body {
 }
 
 h1 {
-	text-align: center;
+	text-align: right;
 }
 
 p {
-	color: blue;
+	color: pink;
 	font-weight: bold;
-	text-align: center;
+	text-align: left;
 }
 
 label {
