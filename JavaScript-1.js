@@ -1,52 +1,79 @@
-var $ = function (id) 
-{
+var $ = function (id) {
     return document.getElementById(id);
 };
 
-var calculate_click = function () 
+var fixPrinter = function()
 {
-    var floatHwPts;
+    var stringOutput = "";  //declares stringOutput inital value to be blank
 
-    //Declare variables intGradeOption, floatTotalPts, floatHwPts, floatMidPts, floatFinPts, stringFinalGrade
-//Get user input to determine grade
-//Calculate floatTotalPts (sum of HW and exam pts)
-//Get user input on whether the course is audit pass/fail (1) or letter grade (2)
-//If the grade option is audit, evaluate total score based upon 80% cutoff scorefor pass/fail
-//Else determine letter grade based upon the typical A = 90%, B - 80%, etc.
-//Output stringFinalGrade
+    //define the individual troubleshooting tips per the chart
+    var stringMessage1 = "Check the power cable.";
+    var stringMessage2 = "Check the printer-computer cable.";
+    var stringMessage3 = "Ensure printer software is installed.";
+    var stringMessage4 = "Check / replace ink.";
+    var stringMessage5 = "Check for paper jam.";
+    var stringMessage6 = "Looks like everything is working fine!";
 
-var intGradeOption, floatTotalPts, floatHwPts, floatMidPts, floatFinPts, stringFinalGrade;
-
-floatHwPts = parseFloat(prompt("Please enter final HW pts (0-30):"));
-
-floatMidPts = ??
-
-floatFinPts = ??
-
-floatTotalPts = parseFloat(??);
-
-intGradeOption = ??prompt??
-
-if (intGradeOption===1)
+    /* Need to be careful here when defining our boolean variables for use in the troubleshooting chart
+     * and what you define as true or false.  For example, in the chart used in this problem,
+     * a combination of Y-Y-Y results in messages 2, 3, & 4 being provided
+     * to the user.  In this case, Y-Y-Y means
+     * "the printer does NOT print"  AND "a red light is flashing" AND "the printer is unrecognized"
+     */
+    var boolPrinting = $("not_printing").selected;  //returns a value of true only when the not_printing html id is selected from the dropdown menu
+    var boolRedLight = $("yes_redlight").selected;  //returns a value of true only when the yes_redlight html id is selected from the dropdown menu
+    var boolRecognised = $("not_recognised").selected;  ////returns a value of true only when the not_recognized html id is selected from the dropdown menu
+if ((test)boolPrinting===true)
 {
-    if(floatTotalPts >= 80)
-
-
-
-
-
-
-
-alert$("final_grade").value=stringFinalGrade;
-    
-    floatHwPts = parseFloat($("hw_pts").value);
-
-
+    if  (boolRedLight===true)
+    {
+        if (boolRecognised===true)
+        {
+            stringOutput=stringMessage2+stringMessage3+stringMessage4;
+        }
+        else
+        {
+            stringOutput= stringMessage4+stringMessage5;
+        }
+    }
+    else
+    {
+        if (boolRecognised===true) {
+        {
+            stringOutput=stringMessage1+stringMessage2+stringMessage3;
+        }
+     else
+        {
+            stringOutput=stringMessage5;
+        }
+    }
+    }
+     else
+        if (boolRedLight===true)
+        {
+            if (boolRecognised===true) 
+            {
+                stringOutput=stringMessage3+stringMessage4;
+            }
+            else
+            {
+                stringOutput=stringMessage4;
+            }
+        }
+            else
+                if (boolRedLight===true) 
+                {
+                        stringOutput=stringMessage3;
+                }
+            else
+            {
+                stringOutput=stringMesssage6;
+            }
+    $("output").value=stringOutput;
 };
 
-window.onload = function () 
-{
-    $("final_grade").value = ""; //blanks the final grade text box upon page load
-    $("calculate").onclick = calculate_click; //activates main method when the button is clicked 
-    $("hw_pts").focus(); //puts the cursor on the first DOM text input box
+
+window.onload = function () {
+    $("troubleshoot").onclick = fixPrinter;
 };
+
